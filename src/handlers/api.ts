@@ -55,7 +55,7 @@ export class ApiHandler extends BaseHandler {
         });
       }
 
-      // 为所有模型插入中文交流指令和自定义prompt
+      // 为所有模型插入English交流指令和自定义prompt
       const processMessages = (originalMessages: any[]) => {
         const modifiedMessages = [];
         let insertedPrompts = false;
@@ -64,12 +64,12 @@ export class ApiHandler extends BaseHandler {
         for (const message of originalMessages) {
           modifiedMessages.push(message);
 
-          // 在第一个系统消息后插入中文指令和自定义prompt
+          // 在第一个系统消息后插入English指令和自定义prompt
           if (message.role === 'system' && !insertedPrompts) {
-            // 插入中文交流指令
+            // 插入English交流指令
             modifiedMessages.push({
               role: 'system',
-              content: '重要：请务必使用中文与用户交流。无论用户使用什么语言提问，都请用中文回答。'
+              content: 'Important: please keep the conversation in English. No matter what language the user asks in, please answer in English.'
             });
 
             // 插入用户自定义系统prompt（如果有配置）

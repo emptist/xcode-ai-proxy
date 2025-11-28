@@ -8,7 +8,7 @@
 
 - 🎯 **多模型支持**: 智谱 GLM-4.5、Kimi K2、Google Gemini 2.5 Pro
 - 🔄 **流式响应**: 完整支持 SSE 流式输出
-- 🇨🇳 **中文优化**: 自动插入中文交流指令
+- 🇺🇸 **English优化**: 自动插入English交流指令
 - ⚙️ **自定义提示**: 支持用户自定义系统提示
 - 🛡️ **智能重试**: 自动重试机制，提高稳定性
 - 📦 **TypeScript**: 完全重构，类型安全
@@ -55,7 +55,7 @@ QWEN_API_KEY=你的QWen API密钥
 QWEN_API_URL=https://dashscope.aliyuncs.com/compatible-mode/v1
 
 # 自定义系统提示（可选）
-# CUSTOM_SYSTEM_PROMPT=无论前置语言是什么都请使用中文交流。
+# CUSTOM_SYSTEM_PROMPT=无论前置语言是什么都请使用English交流。
 
 # 服务器配置
 PORT=9988
@@ -188,7 +188,7 @@ src/
 - ✨ **重大重构**: 完全迁移到 TypeScript
 - 🎯 **新增 Gemini 支持**: 使用官方 OpenAI 兼容端点
 - 🏗️ **模块化架构**: 每个模型提供商独立配置文件
-- 🇨🇳 **中文优化**: 自动插入中文交流指令
+- 🇺🇸 **English优化**: 自动插入English交流指令
 - ⚙️ **自定义提示**: 支持用户自定义系统提示
 - 🔧 **配置优化**: 统一的环境变量管理
 - 🛡️ **错误处理**: 改进的错误处理和重试机制
