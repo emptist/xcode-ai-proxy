@@ -80,19 +80,19 @@ export class ConfigManager {
     });
     Object.assign(this.modelConfigs, kimiProvider.getModels());
 
-    // Gemini
-    const geminiProvider = new GeminiProvider({
-      apiKey: this.env.GEMINI_API_KEY,
-      apiUrl: this.env.GEMINI_API_URL
-    });
-    Object.assign(this.modelConfigs, geminiProvider.getModels());
-
     // QWen
     const qwenProvider = new QWenProvider({
       apiKey: this.env.QWEN_API_KEY,
       apiUrl: this.env.QWEN_API_URL
     });
     Object.assign(this.modelConfigs, qwenProvider.getModels());
+
+    // Gemini
+    const geminiProvider = new GeminiProvider({
+      apiKey: this.env.GEMINI_API_KEY,
+      apiUrl: this.env.GEMINI_API_URL
+    });
+    Object.assign(this.modelConfigs, geminiProvider.getModels());
   }
 
   public getAppConfig(): AppConfig {

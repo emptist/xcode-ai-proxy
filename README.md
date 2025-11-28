@@ -20,10 +20,10 @@
 |------|-------|---------|------|
 | GLM-4.5 | 智谱AI | `glm-4.5` | 智谱最新大语言模型 |
 | Kimi K2 | Moonshot | `kimi-k2-0905-preview` | Kimi 长文本模型 |
-| Gemini 2.5 Pro | Google | `gemini-2.5-pro` | Google 最新多模态模型 |
 | QWen Plus | 阿里通义千问 | `qwen-plus` | 阿里通义千问增强模型 |
 | QWen Turbo | 阿里通义千问 | `qwen-turbo` | 阿里通义千问高速模型 |
 | QWen Max | 阿里通义千问 | `qwen-max` | 阿里通义千问旗舰模型 |
+| Gemini 2.5 Pro | Google | `gemini-2.5-pro` | Google 最新多模态模型 |
 
 ## 🚀 快速开始
 
@@ -107,6 +107,14 @@ npm start
 - `REQUEST_TIMEOUT`: 请求超时时间（毫秒），默认 60000
 - `CUSTOM_SYSTEM_PROMPT`: 自定义系统提示，会自动插入到对话中
 
+### 模型优先级
+
+服务初始化时，模型按照以下顺序加载，优先级从高到低：
+1. 智谱AI (GLM-4.5)
+2. Kimi (Moonshot)
+3. QWen (阿里通义千问)
+4. Gemini (Google)
+
 ### 网络访问
 
 服务启动后会显示多个访问地址：
@@ -163,6 +171,12 @@ src/
 4. 更新环境变量类型定义
 
 ## 📄 更新日志
+
+### v2.0.1 (最新)
+
+- 🛠️ **修复 QWen 实现**: 修正 QWen 模型的 provider 标识
+- ⚙️ **调整模型优先级**: 将 QWen 模型优先级调整为高于 Gemini
+- 📝 **更新文档**: 完善 README 中的模型顺序和优先级说明
 
 ### v2.0.0 (2025-09-20)
 

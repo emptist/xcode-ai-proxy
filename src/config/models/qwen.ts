@@ -25,7 +25,7 @@ export class QWenProvider extends BaseModelProvider {
         type: 'api',
         apiUrl: this.config.apiUrl || 'https://dashscope.aliyuncs.com/compatible-mode/v1',
         apiKey: this.config.apiKey!,
-        provider: 'google',
+        provider: 'qwen',
         name: 'QWen Plus',
         model: 'qwen-plus'
       },
@@ -33,7 +33,7 @@ export class QWenProvider extends BaseModelProvider {
         type: 'api',
         apiUrl: this.config.apiUrl || 'https://dashscope.aliyuncs.com/compatible-mode/v1',
         apiKey: this.config.apiKey!,
-        provider: 'google',
+        provider: 'qwen',
         name: 'QWen Turbo',
         model: 'qwen-turbo'
       },
@@ -41,7 +41,7 @@ export class QWenProvider extends BaseModelProvider {
         type: 'api',
         apiUrl: this.config.apiUrl || 'https://dashscope.aliyuncs.com/compatible-mode/v1',
         apiKey: this.config.apiKey!,
-        provider: 'google',
+        provider: 'qwen',
         name: 'QWen Max',
         model: 'qwen-max'
       }
