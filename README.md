@@ -172,7 +172,12 @@ src/
 
 ## 📄 更新日志
 
-### v2.0.1 (最新)
+### v2.0.2 (最新)
+
+- 🛠️ **修复 QWen API 错误**: 解决 QWen API 返回 400 Bad Request 的问题，通过自动移除空的 tools 参数
+- ✅ **类型安全优化**: 更新 ChatCompletionRequest 接口以支持 tools 参数
+
+### v2.0.1
 
 - 🛠️ **修复 QWen 实现**: 修正 QWen 模型的 provider 标识
 - ⚙️ **调整模型优先级**: 将 QWen 模型优先级调整为高于 Gemini
