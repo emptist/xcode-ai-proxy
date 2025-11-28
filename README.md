@@ -21,6 +21,9 @@
 | GLM-4.5 | 智谱AI | `glm-4.5` | 智谱最新大语言模型 |
 | Kimi K2 | Moonshot | `kimi-k2-0905-preview` | Kimi 长文本模型 |
 | Gemini 2.5 Pro | Google | `gemini-2.5-pro` | Google 最新多模态模型 |
+| QWen Plus | 阿里通义千问 | `qwen-plus` | 阿里通义千问增强模型 |
+| QWen Turbo | 阿里通义千问 | `qwen-turbo` | 阿里通义千问高速模型 |
+| QWen Max | 阿里通义千问 | `qwen-max` | 阿里通义千问旗舰模型 |
 
 ## 🚀 快速开始
 
@@ -46,6 +49,10 @@ KIMI_API_URL=https://api.moonshot.cn/v1
 # Google Gemini配置
 GEMINI_API_KEY=你的Gemini API密钥
 GEMINI_API_URL=https://generativelanguage.googleapis.com/v1beta/openai
+
+# 通义千问QWen配置
+QWEN_API_KEY=你的QWen API密钥
+QWEN_API_URL=https://dashscope.aliyuncs.com/compatible-mode/v1
 
 # 自定义系统提示（可选）
 # CUSTOM_SYSTEM_PROMPT=无论前置语言是什么都请使用中文交流。
@@ -87,6 +94,7 @@ npm start
 | 智谱AI | https://open.bigmodel.cn/ | 注册后在控制台获取 API Key |
 | Kimi | https://platform.moonshot.cn/ | 注册后在 API 管理中获取 |
 | Google Gemini | https://aistudio.google.com/app/apikey | 需要 Google 账号，可能需要梯子 |
+| 通义千问 | https://dashscope.console.aliyun.com/ | 阿里云账号登录，在模型服务中获取 API Key |
 
 ## 🛠️ 配置说明
 

@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import { AppConfig, ModelConfigs, EnvConfig, ApiModelConfig } from '../types';
-import { ZhipuProvider, KimiProvider, GeminiProvider } from './models';
+import { ZhipuProvider, KimiProvider, GeminiProvider, QWenProvider } from './models';
 
 dotenv.config();
 
@@ -33,7 +33,7 @@ export class ConfigManager {
 
     // 检查至少有一个API密钥
     const allApiKeys = [
-      'ZHIPU_API_KEY', 'KIMI_API_KEY', 'GEMINI_API_KEY'
+      'ZHIPU_API_KEY', 'KIMI_API_KEY', 'GEMINI_API_KEY', 'QWEN_API_KEY'
     ];
 
     const hasApiKey = allApiKeys.some(envVar =>
@@ -86,6 +86,13 @@ export class ConfigManager {
       apiUrl: this.env.GEMINI_API_URL
     });
     Object.assign(this.modelConfigs, geminiProvider.getModels());
+
+    // QWen
+    const qwenProvider = new QWenProvider({
+      apiKey: this.env.QWEN_API_KEY,
+      apiUrl: this.env.QWEN_API_URL
+    });
+    Object.assign(this.modelConfigs, qwenProvider.getModels());
   }
 
   public getAppConfig(): AppConfig {
