@@ -17,6 +17,7 @@ export interface ChatCompletionRequest {
   top_p?: number;
   frequency_penalty?: number;
   presence_penalty?: number;
+  tools?: any[];
 }
 
 export interface ChatCompletionResponse {

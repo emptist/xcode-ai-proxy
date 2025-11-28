@@ -94,6 +94,12 @@ export class ApiHandler extends BaseHandler {
         messages: processMessages(requestBody.messages)
       };
 
+      // 特殊处理QWen提供者：移除空的tools数组，因为QWen API不接受空的tools参数
+      if (config.provider === 'qwen' && requestBody.tools && Array.isArray(requestBody.tools) && requestBody.tools.length === 0) {
+        console.log('⚠️ 检测到QWen请求包含空的tools数组，已自动移除');
+        delete requestData.tools;
+      }
+
       console.log(`📡 向 ${config.provider} 发送请求:`, {
         url: `${config.apiUrl}/chat/completions`,
         model: requestData.model,
