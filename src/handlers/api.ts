@@ -155,12 +155,47 @@ export class ApiHandler extends BaseHandler {
         console.error(`❌ ${config.provider} 错误响应数据:`, errorData);
       }
 
+      // OpenCode rate limit special handling
+      if (config.provider === 'opencode' && response.status === 429) {
+        const rateLimitMessage = `OpenCode free tier rate limit exceeded. ` +
+          `To get higher limits, visit https://opencode.ai/auth to get your API key, ` +
+          `then set OPENCODE_API_KEY in .env file.`;
+        const error = new Error(rateLimitMessage);
+        (error as any).status = 429;
+        (error as any).data = errorData;
+        throw error;
+      }
+
       // 继续抛出错误（避免循环引用）
       const error = new Error(`${config.provider} API请求失败: ${response.status} ${response.statusText}`);
       (error as any).status = response.status;
       (error as any).statusText = response.statusText;
       (error as any).url = response.config?.url;
       (error as any).data = errorData;
+      throw error;
+    }
+
+    // OpenCode special handling: returns HTTP 200 with error body
+    if (config.provider === 'opencode' && response.data && response.data.type === 'error') {
+      const errorInfo = response.data.error || {};
+      console.error(`❌ OpenCode API错误 (HTTP 200):`, errorInfo);
+      
+      const errorMessage = errorInfo.message || 'OpenCode API error';
+      const errorType = errorInfo.type || 'api_error';
+      
+      // For rate limit errors, return 429 with helpful message
+      if (errorType === 'FreeUsageLimitError') {
+        const rateLimitMessage = `OpenCode free tier rate limit exceeded. ` +
+          `To get higher limits, visit https://opencode.ai/auth to get your API key, ` +
+          `then set OPENCODE_API_KEY in .env file.`;
+        const error = new Error(rateLimitMessage);
+        (error as any).status = 429;
+        (error as any).data = response.data;
+        throw error;
+      }
+      
+      const error = new Error(`OpenCode API错误: ${errorMessage}`);
+      (error as any).data = response.data;
       throw error;
     }
 

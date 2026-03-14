@@ -9,7 +9,7 @@ export interface ApiModelConfig extends BaseModelConfig {
   type: 'api';
   apiUrl: string;
   apiKey: string;
-  provider: 'zhipu' | 'kimi' | 'google' | 'qwen';
+  provider: 'zhipu' | 'kimi' | 'google' | 'qwen' | 'opencode' | 'openrouter';
   model?: string;
   maxTokens?: number;
   temperature?: number;
@@ -39,6 +39,10 @@ export interface EnvConfig {
   GEMINI_API_URL?: string;
   QWEN_API_KEY?: string;
   QWEN_API_URL?: string;
+  OPENCODE_API_KEY?: string;
+  OPENCODE_API_URL?: string;
+  OPENROUTER_API_KEY?: string;
+  OPENROUTER_API_URL?: string;
   CUSTOM_SYSTEM_PROMPT?: string;
   PORT?: string;
   HOST?: string;

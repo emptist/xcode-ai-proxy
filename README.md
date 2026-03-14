@@ -2,11 +2,11 @@
 
 🚀 **专为 Xcode 设计的多模型 AI 代理服务**
 
-解决 Xcode 中添加其他模型Provider is not valid的问题，支持智谱 GLM、Kimi、新增gemini模型。（折腾了下claude code 有点麻烦 就没有弄了）
+解决 Xcode 中添加其他模型Provider is not valid的问题，支持智谱 GLM、Kimi、OpenCode Zen 免费模型、OpenRouter、Google Gemini 等。
 
 ## ✨ 特性
 
-- 🎯 **多模型支持**: 智谱 GLM-4.5、Kimi K2、Google Gemini 2.5 Pro
+- 🎯 **多模型支持**: 智谱 GLM、OpenCode Zen 免费模型、OpenRouter、Kimi、Google Gemini、通义千问
 - 🔄 **流式响应**: 完整支持 SSE 流式输出
 - 🇺🇸 **English优化**: 自动插入English交流指令
 - ⚙️ **自定义提示**: 支持用户自定义系统提示
@@ -16,9 +16,49 @@
 
 ## 🔧 支持的模型
 
+### 1. 智谱 GLM Flash（推荐，免费）
+
 | 模型 | 提供商 | 模型 ID | 说明 |
 |------|-------|---------|------|
 | GLM-4.5 | 智谱AI | `glm-4.5` | 智谱最新大语言模型 |
+| GLM-4-Flash | 智谱AI | `glm-4-flash` | 免费高速模型 |
+| GLM-4V-Flash | 智谱AI | `glm-4v-flash` | 免费视觉模型（支持图像） |
+
+### 2. OpenCode Zen（免费，无需配置）
+
+| 模型 | 提供商 | 模型 ID | 说明 |
+|------|-------|---------|------|
+| Big Pickle | OpenCode | `big-pickle` | OpenCode 旗舰免费模型 |
+| GPT-5 Nano | OpenCode | `gpt-5-nano` | OpenAI 轻量级免费模型 |
+| GLM-5 Free | OpenCode | `glm-5-free` | 智谱免费模型 |
+| GLM-4.7 Free | OpenCode | `glm-4.7-free` | 智谱免费模型 |
+| Kimi K2.5 Free | OpenCode | `kimi-k2.5-free` | 月之暗面免费模型 |
+| MiniMax M2.5 Free | OpenCode | `minimax-m2.5-free` | MiniMax 免费模型 |
+| MiniMax M2.1 Free | OpenCode | `minimax-m2.1-free` | MiniMax 免费模型 |
+| MiMo V2 Flash Free | OpenCode | `mimo-v2-flash-free` | 小米免费模型 |
+| Nemotron 3 Super Free | OpenCode | `nemotron-3-super-free` | NVIDIA 免费模型 |
+| Grok Code Fast 1 | OpenCode | `grok-code` | xAI 免费编程模型 |
+| Trinity Large Preview | OpenCode | `trinity-large-preview-free` | 免费预览模型 |
+
+### 3. OpenRouter（多模型聚合，部分免费）
+
+| 模型 | 提供商 | 模型 ID | 说明 |
+|------|-------|---------|------|
+| DeepSeek R1 Free | OpenRouter | `or-deepseek-r1-free` | DeepSeek 推理模型（免费） |
+| DeepSeek V3 Free | OpenRouter | `or-deepseek-v3-free` | DeepSeek 对话模型（免费） |
+| Llama 3.3 70B Free | OpenRouter | `or-llama-3.3-70b-free` | Meta 开源模型（免费） |
+| Qwen 2.5 72B Free | OpenRouter | `or-qwen-2.5-72b-free` | 通义千问开源版（免费） |
+| Gemma 3 27B Free | OpenRouter | `or-gemma-3-27b-free` | Google 开源模型（免费） |
+| Mistral 7B Free | OpenRouter | `or-mistral-7b-free` | Mistral 开源模型（免费） |
+| Claude 3.5 Sonnet | OpenRouter | `or-claude-3.5-sonnet` | Anthropic 旗舰模型 |
+| GPT-4o | OpenRouter | `or-gpt-4o` | OpenAI 多模态模型 |
+| GPT-4o Mini | OpenRouter | `or-gpt-4o-mini` | OpenAI 轻量模型 |
+| Gemini 2.0 Flash | OpenRouter | `or-gemini-2.0-flash` | Google 快速模型 |
+
+### 4. 其他模型
+
+| 模型 | 提供商 | 模型 ID | 说明 |
+|------|-------|---------|------|
 | Kimi K2 | Moonshot | `kimi-k2-0905-preview` | Kimi 长文本模型 |
 | QWen Plus | 阿里通义千问 | `qwen-plus` | 阿里通义千问增强模型 |
 | QWen Turbo | 阿里通义千问 | `qwen-turbo` | 阿里通义千问高速模型 |
@@ -38,9 +78,24 @@ npm install
 复制 `.env.example` 为 `.env`，配置你的 API 密钥：
 
 ```bash
-# 智谱AI配置
+# 智谱AI配置（推荐，免费模型）
+# 获取地址: https://open.bigmodel.cn/
 ZHIPU_API_KEY=你的智谱API密钥
 ZHIPU_API_URL=https://open.bigmodel.cn/api/paas/v4
+
+# OpenCode Zen 免费模型配置
+# 官方文档: https://opencode.ai/docs/zen/
+# 免费使用（无需配置）: 默认使用 "public" 作为 API Key
+# 限制: 约 8-10 次/分钟
+# 获取更好配额: https://opencode.ai/auth 登录后获取 API Key
+OPENCODE_API_KEY=your_opencode_api_key_here
+OPENCODE_API_URL=https://opencode.ai/zen/v1
+
+# OpenRouter 多模型聚合配置
+# 官方文档: https://openrouter.ai/docs
+# 统一 API 访问 200+ 模型，部分免费
+OPENROUTER_API_KEY=your_openrouter_api_key_here
+OPENROUTER_API_URL=https://openrouter.ai/api/v1
 
 # Kimi配置
 KIMI_API_KEY=你的Kimi API密钥
@@ -91,7 +146,9 @@ npm start
 
 | 提供商 | 获取地址 | 说明 |
 |--------|----------|------|
-| 智谱AI | https://open.bigmodel.cn/ | 注册后在控制台获取 API Key |
+| 智谱AI | https://open.bigmodel.cn/ | 注册后在控制台获取 API Key，GLM-4-Flash 免费 |
+| OpenCode Zen | https://opencode.ai/auth | 免费模型无需配置，登录可获更高配额 |
+| OpenRouter | https://openrouter.ai/ | 多模型聚合，部分免费模型可用 |
 | Kimi | https://platform.moonshot.cn/ | 注册后在 API 管理中获取 |
 | Google Gemini | https://aistudio.google.com/app/apikey | 需要 Google 账号，可能需要梯子 |
 | 通义千问 | https://dashscope.console.aliyun.com/ | 阿里云账号登录，在模型服务中获取 API Key |
@@ -109,11 +166,13 @@ npm start
 
 ### 模型优先级
 
-服务初始化时，模型按照以下顺序加载，优先级从高到低：
-1. 智谱AI (GLM-4.5)
-2. Kimi (Moonshot)
-3. QWen (阿里通义千问)
-4. Gemini (Google)
+服务初始化时，模型按照以下顺序加载：
+1. **智谱 GLM Flash**（免费、高速、推荐）
+2. **OpenCode Zen**（免费、多模型、无需配置）
+3. **OpenRouter**（多模型聚合、部分免费）
+4. **Kimi**（长文本）
+5. **通义千问 QWen**
+6. **Google Gemini**
 
 ### 网络访问
 
@@ -139,6 +198,11 @@ npm start
 - 检查 API 密钥是否正确
 - 确认网络连接正常
 - 查看控制台日志排查具体错误
+
+**Q: OpenCode 返回 429 错误？**
+- OpenCode 免费层有速率限制（约 8-10 次/分钟）
+- 访问 https://opencode.ai/auth 获取 API Key 可提高配额
+- 或使用智谱 GLM-4-Flash 作为替代
 
 **Q: 模型响应异常？**
 - 检查模型 ID 是否正确
@@ -172,27 +236,37 @@ src/
 
 ## 📄 更新日志
 
-### v2.0.2 (最新)
+### v2.2.0 (最新)
 
-- 🛠️ **修复 QWen API 错误**: 解决 QWen API 返回 400 Bad Request 的问题，通过自动移除空的 tools 参数
+- ✨ **新增 OpenRouter 支持**: 多模型聚合平台，支持 DeepSeek、Llama、Claude、GPT-4o 等
+- ✨ **OpenRouter 免费模型**: DeepSeek R1/V3、Llama 3.3 70B、Qwen 2.5 72B 等 6 个免费模型
+- 🔧 **优化模型顺序**: GLM Flash -> OpenCode -> OpenRouter -> 其他
+
+### v2.1.0
+
+- ✨ **新增 OpenCode Zen 支持**: 11 个免费模型，无需配置即可使用
+- ✨ **新增 GLM-4-Flash 和 GLM-4V-Flash**: 智谱免费模型
+- 🔧 **优化模型顺序**: GLM Flash -> OpenCode -> 其他
+- 🛡️ **改进错误处理**: OpenCode 速率限制时显示友好提示
+- 📝 **完善文档**: 更新 README 和 .env.example
+
+### v2.0.2
+
+- ��️ **修复 QWen API 错误**: 解决 QWen API 返回 400 Bad Request 的问题
 - ✅ **类型安全优化**: 更新 ChatCompletionRequest 接口以支持 tools 参数
 
 ### v2.0.1
 
 - 🛠️ **修复 QWen 实现**: 修正 QWen 模型的 provider 标识
 - ⚙️ **调整模型优先级**: 将 QWen 模型优先级调整为高于 Gemini
-- 📝 **更新文档**: 完善 README 中的模型顺序和优先级说明
 
-### v2.0.0 (2025-09-20)
+### v2.0.0
 
 - ✨ **重大重构**: 完全迁移到 TypeScript
 - 🎯 **新增 Gemini 支持**: 使用官方 OpenAI 兼容端点
 - 🏗️ **模块化架构**: 每个模型提供商独立配置文件
 - 🇺🇸 **English优化**: 自动插入English交流指令
 - ⚙️ **自定义提示**: 支持用户自定义系统提示
-- 🔧 **配置优化**: 统一的环境变量管理
-- 🛡️ **错误处理**: 改进的错误处理和重试机制
-- 📦 **性能优化**: 移除复杂的格式转换，提升响应速度
 
 ### v1.0.0
 

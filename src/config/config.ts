@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import { AppConfig, ModelConfigs, EnvConfig, ApiModelConfig } from '../types';
-import { ZhipuProvider, KimiProvider, GeminiProvider, QWenProvider } from './models';
+import { ZhipuProvider, KimiProvider, GeminiProvider, QWenProvider, OpenCodeProvider, OpenRouterProvider } from './models';
 
 dotenv.config();
 
@@ -33,7 +33,7 @@ export class ConfigManager {
 
     // 检查至少有一个API密钥
     const allApiKeys = [
-      'ZHIPU_API_KEY', 'KIMI_API_KEY', 'GEMINI_API_KEY', 'QWEN_API_KEY'
+      'ZHIPU_API_KEY', 'KIMI_API_KEY', 'GEMINI_API_KEY', 'QWEN_API_KEY', 'OPENCODE_API_KEY', 'OPENROUTER_API_KEY'
     ];
 
     const hasApiKey = allApiKeys.some(envVar =>
@@ -66,28 +66,42 @@ export class ConfigManager {
   private initializeModelConfigs(): void {
     this.modelConfigs = {};
 
-    // 智谱AI GLM-4.5
+    // 1. Zhipu GLM Flash (Free, Fast)
     const zhipuProvider = new ZhipuProvider({
       apiKey: this.env.ZHIPU_API_KEY,
       apiUrl: this.env.ZHIPU_API_URL
     });
     Object.assign(this.modelConfigs, zhipuProvider.getModels());
 
-    // Kimi
+    // 2. OpenCode Zen (Free Models)
+    const opencodeProvider = new OpenCodeProvider({
+      apiKey: this.env.OPENCODE_API_KEY,
+      apiUrl: this.env.OPENCODE_API_URL
+    });
+    Object.assign(this.modelConfigs, opencodeProvider.getModels());
+
+    // 3. OpenRouter (Multi-provider access)
+    const openrouterProvider = new OpenRouterProvider({
+      apiKey: this.env.OPENROUTER_API_KEY,
+      apiUrl: this.env.OPENROUTER_API_URL
+    });
+    Object.assign(this.modelConfigs, openrouterProvider.getModels());
+
+    // 4. Kimi
     const kimiProvider = new KimiProvider({
       apiKey: this.env.KIMI_API_KEY,
       apiUrl: this.env.KIMI_API_URL
     });
     Object.assign(this.modelConfigs, kimiProvider.getModels());
 
-    // QWen
+    // 5. QWen
     const qwenProvider = new QWenProvider({
       apiKey: this.env.QWEN_API_KEY,
       apiUrl: this.env.QWEN_API_URL
     });
     Object.assign(this.modelConfigs, qwenProvider.getModels());
 
-    // Gemini
+    // 6. Gemini
     const geminiProvider = new GeminiProvider({
       apiKey: this.env.GEMINI_API_KEY,
       apiUrl: this.env.GEMINI_API_URL
